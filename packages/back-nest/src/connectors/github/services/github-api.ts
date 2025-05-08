@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 import { validateDTO } from 'src/utils/validateDTO';
@@ -9,7 +9,7 @@ import { GithubRepository } from '../schemas/github-repository.dto';
 import { GithubTree } from '../schemas/github-tree.dto';
 
 @Injectable()
-export class GithubAPI {
+export class GithubAPI implements OnModuleInit {
   private static BASE_URL = 'https://api.github.com';
   private static REPOSITORIES_URL = `${GithubAPI.BASE_URL}/repos`;
   private static REPOSITORY_URL = `${GithubAPI.REPOSITORIES_URL}/{fullName}`;
@@ -17,10 +17,31 @@ export class GithubAPI {
   private static BLOB_URL = `${GithubAPI.REPOSITORY_URL}/git/blobs/{sha}`;
   private static BLOB_HTML_PERMA_LINK = `https://github.com/{fullName}/blob/{treeSha}/{path}/#L{startLine}-L{endLine}`;
 
-  private token: string;
+  private token: string | null = null;
 
-  constructor(private readonly http: HttpService, cfg: ConfigService) {
-    this.token = getGithubAccessToken(cfg);
+  constructor(
+    private readonly http: HttpService,
+    private readonly config: ConfigService,
+  ) {}
+
+  onModuleInit() {
+    this.token = this.getGithubAccessToken();
+    if (!this.token) {
+      console.warn('Running GitHub API in unauthenticated mode. Rate limits will be lower.');
+    }
+  }
+
+  private getGithubAccessToken(): string | null {
+    const token = this.config.get<string>('GITHUB_ACCESS_TOKEN');
+    if (!token) {
+      console.warn('GITHUB_ACCESS_TOKEN is not set. Running in unauthenticated mode with rate limits.');
+      return null;
+    }
+    if (!token.startsWith('ghp_')) {
+      console.warn('GITHUB_ACCESS_TOKEN is not a valid value. It should start with "ghp_". Running in unauthenticated mode.');
+      return null;
+    }
+    return token;
   }
 
   static getBlobPermaLink(
@@ -39,12 +60,13 @@ export class GithubAPI {
   }
 
   private async get(url: string) {
+    const headers: Record<string, string> = {};
+    if (this.token) {
+      headers.Authorization = `token ${this.token}`;
+    }
+    
     const resp = await firstValueFrom(
-      this.http.get(url, {
-        headers: {
-          Authorization: `token ${this.token}`,
-        },
-      }),
+      this.http.get(url, { headers }),
     );
     this.logRateLimit(resp);
     return resp.data;
@@ -85,19 +107,4 @@ export class GithubAPI {
     const blob = await validateDTO(GithubBlob, rawData);
     return blob;
   }
-}
-
-function getGithubAccessToken(cfg: ConfigService) {
-  const token = cfg.get<string>('GITHUB_ACCESS_TOKEN');
-  if (!token) {
-    throw new Error(
-      `GITHUB_ACCESS_TOKEN is missing from environment variables`,
-    );
-  }
-  if (!token.startsWith('ghp_')) {
-    throw new Error(
-      `GITHUB_ACCESS_TOKEN is not a valid value. It should start with 'ghp_'`,
-    );
-  }
-  return token;
 }
