@@ -213,7 +213,7 @@ function ActionButtons() {
             setIsThrottled(true);
             setTimeout(() => {
               setIsThrottled(false);
-            }, 2000);
+            }, 100);
           }}
           icon={
             <div className="h-3 w-3">

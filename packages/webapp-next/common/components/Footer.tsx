@@ -65,7 +65,7 @@ export function Footer() {
                 >
                   <GithubLogo />
                   <span className="hidden sm:block ml-1">
-                    {stargazersCount} stars
+                  codicocodes ⭐ {stargazersCount}
                   </span>
                   <span className="block sm:hidden ml-1">based on codicocodes/speedtyper</span>
                 </a>

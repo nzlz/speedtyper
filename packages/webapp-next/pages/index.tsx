@@ -49,7 +49,7 @@ function Play2Page() {
       setIsThrottled(true);
       setTimeout(() => {
         setIsThrottled(false);
-      }, 2000);
+      }, 100);
     }, [isThrottled, hasOpenModal, game])
   );
   useSettingsStore((s) => s.settingsModalIsOpen);

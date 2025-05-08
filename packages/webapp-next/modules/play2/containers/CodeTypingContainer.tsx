@@ -82,7 +82,7 @@ export function CodeTypingContainer({
         onMouseDown={onMouseDownPreventBlur}
       >
         <HiddenCodeInput hide={true} disabled={false} inputRef={inputRef} />
-        <CodeArea staticHeigh={true} filePath={filePath} focused={focused}>
+        <CodeArea staticHeigh={true} filePath={filePath.replace(/^\/app\/repos\/?/, "")} focused={focused}>
           <TypedChars language={language} />
           <IncorrectChars />
           <NextChar focused={focused} />

@@ -105,7 +105,7 @@ function ResultPage() {
               </div>
               <CodeArea
                 staticHeigh={false}
-                filePath={truncateFile(data.challenge.path)}
+                filePath={truncateFile(data.challenge.path.replace(/^\/app\/repos\/?/, ""))}
                 focused={true}
               >
                 <span className="text-xs sm:text-sm tracking-tight leading-1">
