@@ -1,6 +1,9 @@
 # Notes
 .mind
 
+/repos
+packages/back-nest/repos/
+
 # Logs
 logs
 *.log

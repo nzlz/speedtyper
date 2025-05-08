@@ -34,6 +34,10 @@ export const getSessionMiddleware = () => {
 };
 
 function getSessionSecret() {
+  if (process.env.NODE_ENV !== 'production') {
+    // Use a default secret in development
+    return 'dev-secret-1234567890';
+  }
   const secret = process.env.SESSION_SECRET;
   if (!secret)
     throw new Error('SESSION_SECRET is missing from environment variables');

@@ -63,7 +63,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Stream />
       </div>
 
-      <div className="absolute bottom-0 mb-12 sm:mb-24 flex w-full justify-center">
+      {/* <div className="absolute bottom-0 mb-12 sm:mb-24 flex w-full justify-center">
         <a
           data-umami-event="TikTok Banner - Click"
           href="https://www.tiktok.com/tag/speedtyperdev"
@@ -81,7 +81,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </span>
           <span className="hidden sm:inline text-white">TikToks</span>
         </a>
-      </div>
+      </div> */}
     </>
   );
 }

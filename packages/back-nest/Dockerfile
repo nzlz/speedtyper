@@ -1,18 +1,28 @@
 FROM node:20
 
+# Install Python and pip
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Create app directory
-RUN mkdir -p /app
 WORKDIR /app
 
-# Install app dependencies
-COPY package.json /app
-COPY yarn.lock /app
-RUN yarn install --frozen-lockfile
+# Install vcstool for repository management
+RUN pip3 install --break-system-packages git+https://github.com/dirk-thomas/vcstool.git
 
-# Bundle app source
-COPY . /app
-RUN yarn build
+# Install global dependencies
+RUN npm install -g rimraf @nestjs/cli
 
-EXPOSE 80
+EXPOSE 1337
 
-CMD [ "node", "dist/main.js" ]
+# For development (hot reload)
+# CMD [ "yarn", "start:dev" ]
+
+# For production (uncomment for prod)
+# RUN yarn build
+# CMD [ "node", "dist/main.js" ]
+
+# For now, keep dev mode:
+CMD [ "yarn", "start:dev" ]

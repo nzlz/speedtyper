@@ -8,7 +8,6 @@ cd /app
 if [ -f ".repos" ]; then
     echo "Found .repos file, importing repositories..."
     cd $REPOS_DIR
-    . /opt/venv/bin/activate
     vcs import < /app/.repos
 else
     echo "No .repos file found in /app"

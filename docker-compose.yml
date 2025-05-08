@@ -10,14 +10,15 @@ services:
       - "1337:1337"
     volumes:
       - ./packages/back-nest:/app
+      - /app/node_modules
       - ./repos:/app/repos
-      - ./.repos:/app/.repos
+      - ./.repos:/app/.repos:ro
     environment:
       - DATABASE_PRIVATE_URL=postgresql://postgres:postgres@db:5432/postgres
       - NODE_ENV=development
     depends_on:
       - db
-    command: sh -c "./scripts/clone-repos.sh && yarn prebuild && yarn build && yarn start:dev"
+    command: sh -c "yarn install && ./scripts/clone-repos.sh && yarn prebuild && yarn build && yarn start:dev"
 
   frontend:
     image: node:20

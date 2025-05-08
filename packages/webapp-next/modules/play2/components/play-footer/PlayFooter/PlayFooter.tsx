@@ -119,7 +119,7 @@ export function PlayFooter({ challenge }: PlayFooterProps) {
                 <div className="text-faded-gray flex gap-4">
                   {isAnonymous && (
                     <>
-                      <button
+                      {/* <button
                         onClick={openProfileModal}
                         className="flex text-xs items-center font-semibold tracking-wide hover:cursor-pointer gap-2 hover:text-off-white"
                       >
@@ -127,7 +127,7 @@ export function PlayFooter({ challenge }: PlayFooterProps) {
                           <FontAwesomeIcon icon={faUserGroup} size="xs" />
                         </div>
                         Login | Signup
-                      </button>
+                      </button> */}
                       {profileModalIsOpen && (
                         <GithubLoginOverlay closeModal={closeModals} />
                       )}

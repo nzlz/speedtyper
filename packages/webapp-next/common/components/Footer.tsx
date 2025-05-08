@@ -67,9 +67,9 @@ export function Footer() {
                   <span className="hidden sm:block ml-1">
                     {stargazersCount} stars
                   </span>
-                  <span className="block sm:hidden ml-1">star</span>
+                  <span className="block sm:hidden ml-1">based on codicocodes/speedtyper</span>
                 </a>
-                <a
+                {/* <a
                   href="https://discord.gg/AMbnnN5eep"
                   className="flex items-center hover:text-blue-300"
                   target="blank"
@@ -95,7 +95,7 @@ export function Footer() {
                     <FontAwesomeIcon icon={faCode} size="2x" color="fill" />
                   </div>
                   <span className="ml-1">nvim</span>
-                </a>
+                </a> */}
               </div>
             </motion.div>
           </AnimatePresence>

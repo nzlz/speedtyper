@@ -78,11 +78,11 @@ export class ChallengeService {
     }
 
     // Get or create a default project
-    let project = await this.projectRepository.findOne({ where: { fullName: 'nzlz/speedtyper.dev' } });
+    let project = await this.projectRepository.findOne({ where: { fullName: 'nzlz/speedtyper' } });
     if (!project) {
       project = this.projectRepository.create({
-        fullName: 'nzlz/speedtyper.dev',
-        htmlUrl: 'https://github.com/nzlz/speedtyper.dev',
+        fullName: 'nzlz/speedtyper',
+        htmlUrl: 'https://github.com/nzlz/speedtyper',
         language: language || 'unknown',
         stars: 0,
         licenseName: 'MIT',
