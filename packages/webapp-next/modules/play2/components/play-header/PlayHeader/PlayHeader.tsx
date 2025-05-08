@@ -46,7 +46,7 @@ export function Result({ result, place }: ResultProps) {
         {result.user.username}
       </span>
       <div className="flex w-full gap-2">
-        <span className="flex font-semibold text-xs rounded-lg px-2 py-1 bg-purple-300 text-dark-ocean">
+        <span className="flex font-semibold text-xs rounded-lg px-2 py-1 bg-blue-300 text-dark-ocean">
           {place} place
         </span>
         <div className="flex flex-grow justify-end gap-2">
@@ -86,7 +86,7 @@ export function Progress({ progress, word }: ProgressProps) {
       }}
     >
       <div
-        className="bg-purple-300 h-full rounded-lg"
+        className="bg-blue-300 h-full rounded-lg"
         style={{ width: `${progress}%`, transition: "width 200ms ease-in-out" }}
       ></div>
       {word && (

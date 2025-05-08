@@ -1,57 +1,42 @@
-
 <br>
 <div align="center">
-  <a href="https://speedtyper.dev" target="_blank">
-    <img src="https://www.speedtyper.dev/logo.png" alt="Speedtyper" height="100" width="auto"/>
+  <a href="https://github.com/nzlz/speedtyper.dev" target="_blank">
+    <img src="packages/webapp-next/public/logo.png" alt="Speedtyper (Local Edition)" height="100" width="auto"/>
   </a>
-  <h1><i>speedtyper.dev</i></h1>
+  <h1><i>speedtyper - offline</i></h1>
 </div>
 
 <p align="center">
   <b>
-      Typing competitions for programmers 🧑‍💻👩‍💻👨‍💻
+      Master the syntax of codebases of your choice - fully offline 🧑‍💻
   </b>
 </p>
-<p align="center">
-  <a href="https://github.com/codicocodes/speedtyper.dev" target="__blank"><img alt="GitHub stars" src="https://img.shields.io/github/stars/codicocodes/speedtyper.dev?style=social"></a>
-</p>
 
-### **Table of Contents**
-- [Features](#features-🎉)
-- [Contribute](#contribute-👷)
-- [Community](#community-☕)
-- [License](#license-📜)
-- [Project Contributors](#project-contributors⭐)
+## About
 
-## Features 🎉
+This is a local-only fork of [speedtyper.dev](https://github.com/codicocodes/speedtyper.dev), optimized for offline usage. All cloud functionality has been removed, allowing you to:
 
-- ✍️ [**Practice**](https://speedtyper.dev/play?mode=private) - type code snippets from real open source projects
-- 🏎️ [**Battle**](https://speedtyper.dev/play?mode=private) - play with your friends in real time with the private race mode
-- 🏅 [**Compete**](https://speedtyper.dev) - get on the global leaderboard
+- Practice typing code with your own repositories and master special characters
+- Use it anytime, anywhere without internet connectivity
+- No usage limitations or data restrictions
 
-## Contribute 👷
-- 🦄 **Pull requests are very appreciated!**
-- 📚 Read the [contributor introduction (wip)](https://github.com/codicocodes/speedtyper.dev/blob/main/CONTRIBUTING.md)
-- 🐛 If you encounter a bug, please [open an issue](https://github.com/codicocodes/speedtyper.dev/issues/new)
-- 🗨️ If you want to make a large change, please [open an issue](https://github.com/codicocodes/speedtyper.dev/issues/new) so we can discuss it!
+## How to Use
 
-## Community ☕
-<a href="https://discord.gg/AMbnnN5eep" target="__blank">
-  <img src="https://discordapp.com/api/guilds/774781405506568202/widget.png?style=banner2" alt="SpeedTyper Discord" width="auto" height="50px"/>
-</a>
-<a href="https://twitch.tv/codico" target="__blank">
-  <img src="https://user-images.githubusercontent.com/76068197/187993983-6133fe16-46ed-45f7-a459-fa798bda4a92.png" alt="Twitch Stream" width="auto" height="50px"/>
-</a>
+1. Start the application with Docker (required):
+   ```
+   docker compose up
+   ```
 
-## License 📜
+2. Open [http://localhost:3001/](http://localhost:3001/) in your browser.
 
-speedtyper.dev is open source software licensed as [MIT](https://github.com/codicocodes/speedtyper.dev/blob/main/LICENSE).
+3. That's it! You're ready to practice.
 
-The [logo](https://github.com/codicocodes/speedtyper.dev/blob/main/packages/webapp/public/images/logo.png) is made by [astrocanyounaut](https://www.twitch.tv/astrocanyounaut) 🧑‍🚀 and is not licensed under MIT.
+To customize your practice repositories, edit the `.repos` file in the root directory with the GitHub repositories you're interested in.
 
+## Disclaimer
 
-## Project Contributors⭐ 
+The code in this repository does not represent any coding standard or quality code. It was quickly iterated over with [Cursor](https://cursor.sh) editor and is provided as-is primarily for functionality.
 
-<a href="https://github.com/codicocodes/speedtyper.dev/graphs/contributors" align="center">
-  <img src="https://contrib.rocks/image?repo=codicocodes/speedtyper.dev" /> 
-</a>
+## License
+
+This fork follows the original speedtyper.dev's [MIT](https://github.com/codicocodes/speedtyper.dev/blob/main/LICENSE) license.

@@ -44,7 +44,7 @@ export function ProfileItem({ children, onClick }: ProfileItemProps) {
   return (
     <div
       onClick={onClick}
-      className="hover:text-purple-700 w-full ml-4 flex items-center text-lg justify-start cursor-pointer border-0 rounded bg-100 outline-none focus:outline-none"
+      className="hover:text-blue-700 w-full ml-4 flex items-center text-lg justify-start cursor-pointer border-0 rounded bg-100 outline-none focus:outline-none"
     >
       {children}
     </div>

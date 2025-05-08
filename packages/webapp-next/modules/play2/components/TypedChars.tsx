@@ -24,7 +24,7 @@ export function TypedChars({ language }: TypedCharsProps) {
   }, [index, isSyntaxHighlightingEnabled]);
   return (
     <span
-      className={`text-violet-400 ${language}`}
+      className={`text-cyan-400 ${language}`}
       ref={typedRef}
       style={{ background: "none" }}
     >

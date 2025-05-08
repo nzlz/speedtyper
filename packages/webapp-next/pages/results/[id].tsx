@@ -21,6 +21,7 @@ import { useInitializeUserStore } from "../../common/state/user-store";
 import { useUser } from "../../common/api/user";
 import Head from "next/head";
 import { TweetResult } from "../../modules/play2/components/TweetResult";
+import { formatCodeWithMaxLineLength } from "../../common/utils/code-formatter";
 
 const baseURL = getExperimentalServerUrl();
 
@@ -41,6 +42,11 @@ function ResultPage() {
   const resultTitle = data?.user
     ? `${data.user.username} ${cpmToWPM(data.cpm)}wpm`
     : "Result";
+
+  // Format the code when data is available
+  const formattedCode = data?.challenge?.content 
+    ? formatCodeWithMaxLineLength(data.challenge.content)
+    : "";
 
   return (
     <>
@@ -80,11 +86,11 @@ function ResultPage() {
                   title="words per minute"
                   value={`${cpmToWPM(data.cpm)}`}
                 />
-                <ResultsText
+                {/* <ResultsText
                   info="Percentage of results on speedtyper.dev this race was faster than"
                   title="global rank"
                   value={`${data.percentile}%`}
-                />
+                /> */}
                 <ResultsText
                   info="% correctly typed characters in race"
                   title="accuracy"
@@ -105,11 +111,11 @@ function ResultPage() {
               </div>
               <CodeArea
                 staticHeigh={false}
-                filePath={truncateFile(data.challenge.path)}
+                filePath={truncateFile(data.challenge.path.replace(/^\/app\/repos\/?/, ""))}
                 focused={true}
               >
                 <span className="text-xs sm:text-sm tracking-tight leading-1">
-                  {data.challenge.content}
+                  {formattedCode}
                 </span>
               </CodeArea>
               <div className="w-full flex justify-between items-center">

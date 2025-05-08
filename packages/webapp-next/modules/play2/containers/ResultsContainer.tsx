@@ -48,7 +48,7 @@ export function ShareResultButton({ url }: { url: string }) {
         const message = `Result URL copied to clipboard: ${url}`;
         copyToClipboard(url, message);
       }}
-      className="w-full sm:w-auto flex shadow-lg hover:shadow-violet-900 hover:cursor-pointer text-faded-gray hover:text-off-white bg-dark-lake flex-col items-center justify-center px-1 rounded hover:bg-white/10"
+      className="w-full sm:w-auto flex shadow-lg hover:shadow-cyan-900 hover:cursor-pointer text-faded-gray hover:text-off-white bg-dark-lake flex-col items-center justify-center px-1 rounded hover:bg-white/10"
     >
       <div className="h-4 w-4">
         <FontAwesomeIcon icon={faShare} />
@@ -73,7 +73,7 @@ export function DailyStreak() {
                 return (
                   <div key={i} className="h-3 w-3">
                     {done ? (
-                      <div className="text-violet-400">
+                      <div className="text-cyan-400">
                         <FontAwesomeIcon icon={faCheckCircle} />{" "}
                       </div>
                     ) : (
@@ -120,11 +120,11 @@ export function ResultsContainer() {
               title="words per minute"
               value={wpm.toString()}
             />
-            <ResultsText
+            {/* <ResultsText
               info="Percentage of results on speedtyper.dev this race was faster than"
               title="global rank"
               value={`${result.percentile}%`}
-            />
+            /> */}
             <ResultsText
               info="% correctly typed characters in race"
               title="accuracy"

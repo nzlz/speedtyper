@@ -5,6 +5,7 @@ import {
   MouseEvent,
   useEffect,
   useState,
+  useCallback,
 } from "react";
 
 import { isSkippable, useCodeStore } from "../state/code-store";
@@ -21,6 +22,7 @@ const useAutoTyper = (
 ) => {
   const isAutoTyperEnabled = false;
   const code = useCodeStore.getState().code;
+  
   useEffect(() => {
     if (code && isAutoTyperEnabled) {
       const current = useCodeStore.getState().currentChar();
@@ -31,11 +33,15 @@ const useAutoTyper = (
         .map((st) => st.trimStart())
         .join("\n");
       const value = current + untyped;
-      handleOnChange({
-        target: {
-          value,
-        },
-      } as unknown as ChangeEvent<HTMLTextAreaElement>);
+      
+      // Use setTimeout to avoid updating state during render
+      setTimeout(() => {
+        handleOnChange({
+          target: {
+            value,
+          },
+        } as unknown as ChangeEvent<HTMLTextAreaElement>);
+      }, 0);
     }
   }, [isAutoTyperEnabled, code, handleOnChange]);
 };
@@ -49,15 +55,15 @@ export const HiddenCodeInput = ({
   const handleBackspace = useCodeStore((state) => state.handleBackspace);
   const handleKeyPress = useCodeStore((state) => state.handleKeyPress);
   const keyPressFactory = useCodeStore((state) => state.keyPressFactory);
-  useAutoTyper(handleOnChange);
   const canType = useCanType();
 
   // TODO: remove input and setInput
   // instead introduc getTypedInput method in the store
   // which gets code.substr(0, correctIndex)
   const [input, setInput] = useState("");
-
-  function handleOnChange(e: ChangeEvent<HTMLTextAreaElement>) {
+  
+  // Memoize the onChange handler to avoid recreating it on every render
+  const handleOnChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
     // TODO: use e.isTrusted
     if (!canType) return;
     if (!game) return;
@@ -78,7 +84,10 @@ export const HiddenCodeInput = ({
       }
     }
     setInput(e.target.value);
-  }
+  }, [canType, game, handleBackspace, handleKeyPress, input, keyPressFactory]);
+  
+  // Use the memoized handler for autoTyper
+  useAutoTyper(handleOnChange);
 
   return (
     <textarea

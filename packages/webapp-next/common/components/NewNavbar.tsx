@@ -41,7 +41,7 @@ const ProfileSection = () => {
             transition={{ duration: 0.5 }}
           >
             <div className="text-sm flex-grow"></div>
-            <NewGithubLoginModal />
+            {/* <NewGithubLoginModal /> */}
           </motion.div>
         </AnimatePresence>
       )}

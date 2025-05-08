@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from "react";
+import React, { ButtonHTMLAttributes, forwardRef } from "react";
 
 type ButtonColor = "primary" | "secondary" | "invisible";
 
@@ -10,7 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "sm" | "md" | "lg";
 }
 
-const Button = ({
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   color,
   disabled,
   onClick,
@@ -19,7 +19,8 @@ const Button = ({
   text,
   title,
   size = "md",
-}: ButtonProps) => {
+  ...rest
+}, ref) => {
   const colorStyles = getColorStyles(color);
   const disabledStyle = disabled
     ? "cursor-not-allowed opacity-80"
@@ -46,6 +47,8 @@ const Button = ({
       disabled={disabled}
       aria-expanded="true"
       aria-haspopup="true"
+      ref={ref}
+      {...rest}
     >
       <>
         {leftIcon && leftIcon}
@@ -54,7 +57,9 @@ const Button = ({
       </>
     </button>
   );
-};
+});
+
+Button.displayName = "Button";
 
 function getColorStyles(color: ButtonColor) {
   if (color === "invisible") {
@@ -65,7 +70,7 @@ function getColorStyles(color: ButtonColor) {
     "flex items-center text-gray-900 border-gray-200 border rounded";
 
   const style =
-    color === "primary" ? `bg-off-white` : `bg-purple-400 hover:bg-purple-300`;
+    color === "primary" ? `bg-off-white` : `bg-blue-400 hover:bg-blue-300`;
 
   return `${sharedStyle} ${style}`;
 }

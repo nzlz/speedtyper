@@ -2,6 +2,7 @@ import "../styles/globals.css";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import Script from "next/script";
 import NextNProgress from "nextjs-progressbar";
 import { Layout } from "../common/components/Layout";
 import { Stream } from "../components/Stream";
@@ -45,13 +46,16 @@ function MyApp({ Component, pageProps }: AppProps) {
           <meta property="og:image:height" content="1024" />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://speedtyper.dev" />
-          <link rel="icon" href="/favicon.ico" />
-          <script
-            async
-            src="https://umami-production-7f33.up.railway.app/script.js"
-            data-website-id="ed902c85-74a2-427f-a554-520fdf0925e5"
-          ></script>
+          <link rel="icon" href="/logo.png" />
         </Head>
+        
+        {/* Use next/script for analytics */}
+        <Script
+          src="https://umami-production-7f33.up.railway.app/script.js"
+          data-website-id="ed902c85-74a2-427f-a554-520fdf0925e5"
+          strategy="afterInteractive"
+        />
+        
         <NextNProgress
           options={{ showSpinner: false }}
           color="#d6bbfa"
@@ -63,12 +67,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Stream />
       </div>
 
-      <div className="absolute bottom-0 mb-12 sm:mb-24 flex w-full justify-center">
+      {/* <div className="absolute bottom-0 mb-12 sm:mb-24 flex w-full justify-center">
         <a
           data-umami-event="TikTok Banner - Click"
           href="https://www.tiktok.com/tag/speedtyperdev"
           target="_blank"
-          className={`${isPlayingCss} border border-gray-400 rounded-lg p-4 flex gap-2 items-center hover:border-purple-400 transition-all hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-purple-400 hover:to-fuchsia-700`}
+          className={`${isPlayingCss} border border-gray-400 rounded-lg p-4 flex gap-2 items-center hover:border-blue-400 transition-all hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-blue-400 hover:to-fuchsia-700`}
           rel="noreferrer"
         >
           <FontAwesomeIcon
@@ -81,7 +85,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </span>
           <span className="hidden sm:inline text-white">TikToks</span>
         </a>
-      </div>
+      </div> */}
     </>
   );
 }

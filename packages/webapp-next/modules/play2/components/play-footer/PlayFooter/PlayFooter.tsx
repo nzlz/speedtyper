@@ -119,7 +119,7 @@ export function PlayFooter({ challenge }: PlayFooterProps) {
                 <div className="text-faded-gray flex gap-4">
                   {isAnonymous && (
                     <>
-                      <button
+                      {/* <button
                         onClick={openProfileModal}
                         className="flex text-xs items-center font-semibold tracking-wide hover:cursor-pointer gap-2 hover:text-off-white"
                       >
@@ -127,7 +127,7 @@ export function PlayFooter({ challenge }: PlayFooterProps) {
                           <FontAwesomeIcon icon={faUserGroup} size="xs" />
                         </div>
                         Login | Signup
-                      </button>
+                      </button> */}
                       {profileModalIsOpen && (
                         <GithubLoginOverlay closeModal={closeModals} />
                       )}
@@ -213,7 +213,7 @@ function ActionButtons() {
             setIsThrottled(true);
             setTimeout(() => {
               setIsThrottled(false);
-            }, 2000);
+            }, 100);
           }}
           icon={
             <div className="h-3 w-3">
@@ -258,7 +258,7 @@ function ActionButtons() {
 
 function Timer({ seconds }: { seconds: number }) {
   return (
-    <div className="text-3xl ml-2 font-bold text-purple-300">
+    <div className="text-3xl ml-2 font-bold text-blue-300">
       {toHumanReadableTime(seconds)}
     </div>
   );

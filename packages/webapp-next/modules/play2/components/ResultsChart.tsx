@@ -41,8 +41,8 @@ const renderChart = (
         {
           label: "WPM each second",
           data,
-          backgroundColor: "#7e22ce",
-          borderColor: "#7e22ce",
+          backgroundColor: "#06b6d4",
+          borderColor: "#06b6d4",
           tension: 0.4,
           fill: true,
         },

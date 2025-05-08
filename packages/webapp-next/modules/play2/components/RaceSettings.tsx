@@ -72,7 +72,7 @@ export const CaretSelector = () => {
             <div
               className={`flex items-center h-full w-full p-3 rounded-lg ${
                 checked
-                  ? "bg-purple-200 hover:bg-purple-300"
+                  ? "bg-blue-200 hover:bg-blue-300"
                   : "bg-gray-200 hover:bg-gray-300"
               }`}
             >
@@ -91,7 +91,7 @@ export const CaretSelector = () => {
             <div
               className={`flex items-center h-full w-full p-3 rounded-lg ${
                 checked
-                  ? "bg-purple-200 hover:bg-purple-300"
+                  ? "bg-blue-200 hover:bg-blue-300"
                   : "bg-gray-200 hover:bg-gray-300"
               }`}
             >
@@ -133,7 +133,7 @@ export const ToggleSelector: React.FC<ToggleSelectorProps> = ({
                   disabled
                     ? "bg-gray-500"
                     : checked
-                    ? "bg-purple-300"
+                    ? "bg-blue-300"
                     : "bg-faded-gray"
                 } relative inline-flex h-6 w-11 items-center rounded-full`}
               >

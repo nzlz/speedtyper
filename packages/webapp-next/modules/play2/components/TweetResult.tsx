@@ -15,7 +15,7 @@ export const TweetResult = ({ wpm, url }: TweetResultProps) => {
     <a
       href={tweetUrl}
       target="blank"
-      className="w-full sm:w-auto flex shadow-lg hover:shadow-violet-900 hover:cursor-pointer text-faded-gray hover:text-off-white bg-dark-lake flex-col items-center justify-center px-1 rounded hover:bg-white/10"
+      className="w-full sm:w-auto flex shadow-lg hover:shadow-cyan-900 hover:cursor-pointer text-faded-gray hover:text-off-white bg-dark-lake flex-col items-center justify-center px-1 rounded hover:bg-white/10"
     >
       <div className="h-4 w-4">
         <FontAwesomeIcon icon={faTwitter as IconDefinition} />

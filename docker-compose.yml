@@ -1,0 +1,47 @@
+services:
+  db:
+    image: postgres
+    restart: always
+
+    ports:
+      - 5432:5432
+
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./packages/back-nest:/app
+      - ./repos:/app/repos
+      - ./.repos:/app/.repos:ro
+    environment:
+      - DATABASE_PRIVATE_URL=postgresql://postgres:postgres@db:5432/postgres
+      - NODE_ENV=development
+    depends_on:
+      - db
+    command: sh /app/scripts/entrypoint.sh
+
+  frontend:
+    image: node:20
+    working_dir: /app
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./packages/webapp-next:/app
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:1337
+    depends_on:
+      - backend
+    command: sh -c "yarn install && yarn dev"

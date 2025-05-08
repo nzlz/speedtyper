@@ -67,7 +67,7 @@ const BatteListItem: React.FC<BatteListItemProps> = ({ race, closeModal }) => {
       } p-2 px-4 my-1`}
     >
       <div className="flex">
-        <div className="flex items-center bg-purple-300 px-2 rounded mr-2">
+        <div className="flex items-center bg-blue-300 px-2 rounded mr-2">
           <div className="h-3">
             <UserGroupIcon />
           </div>
