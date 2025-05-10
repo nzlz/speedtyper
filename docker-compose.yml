@@ -1,16 +1,29 @@
-include:
-  - ./packages/back-nest/docker-compose.yml
-
 services:
+  db:
+    image: postgres
+    restart: always
+
+    ports:
+      - 5432:5432
+
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
   backend:
     build:
-      context: ./packages/back-nest
+      context: .
       dockerfile: Dockerfile
     ports:
       - "1337:1337"
     volumes:
       - ./packages/back-nest:/app
-      - /app/node_modules
       - ./repos:/app/repos
       - ./.repos:/app/.repos:ro
     environment:
@@ -18,7 +31,7 @@ services:
       - NODE_ENV=development
     depends_on:
       - db
-    command: sh -c "yarn install && ./scripts/clone-repos.sh && yarn prebuild && yarn build && yarn start:dev"
+    command: sh /app/scripts/entrypoint.sh
 
   frontend:
     image: node:20
