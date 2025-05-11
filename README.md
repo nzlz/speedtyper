@@ -12,6 +12,10 @@
   </b>
 </p>
 
+<div align="center">
+  <img src="demo.gif" width="100%" alt="Demo of speedtyper-offline" />
+</div>
+
 ## About
 
 This is a local-only fork of [speedtyper.dev](https://github.com/codicocodes/speedtyper.dev), optimized for offline usage. All cloud functionality has been removed, allowing you to:
