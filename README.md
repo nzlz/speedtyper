@@ -13,7 +13,7 @@
 </p>
 
 <div align="center">
-  <img src="demo.gif" width="100%" alt="Demo of speedtyper-offline" />
+  <img src="demo.gif" width="70%" alt="Demo of speedtyper-offline" />
 </div>
 
 ## About
